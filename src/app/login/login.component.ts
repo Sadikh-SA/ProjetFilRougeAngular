@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TOKEN_NAME, AuthentificationService } from '../authentification.service';
+import { AuthentificationService } from '../authentification.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -11,9 +14,13 @@ export class LoginComponent implements OnInit {
 
   formulaire: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private authService: AuthentificationService) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthentificationService, private router: Router) { }
 
-  private token = localStorage.getItem(TOKEN_NAME)
+  //private token = localStorage.getItem(TOKEN_NAME)
+  private helper = new JwtHelperService();
+  jwt: string;
+  username: string;
+  roles: Array<string>;
 
   ngOnInit() {
     this.formulaire = this.formBuilder.group({
@@ -36,7 +43,19 @@ export class LoginComponent implements OnInit {
           password: password
         }
         //console.log(this.authService.login(user));
-        this.authService.login(user)
+        this.authService.login(user).subscribe(
+          res => {
+            console.log(res)
+            let decoderToken = this.helper.decodeToken(res.token);
+            this.roles = decoderToken.roles;
+            console.log(this.roles)
+            this.username = decoderToken.username;
+            console.log(this.username)
+            localStorage.setItem(res.token, res.token);
+            this.router.navigateByUrl("/")
+          },
+          err => console.log(err)
+          );
         console.log(this.formulaire.value)
     }
 
