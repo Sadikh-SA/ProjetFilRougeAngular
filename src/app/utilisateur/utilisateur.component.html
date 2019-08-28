@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Utilisateur</title>
+</head>
+<body>
+  
+    <form #f ="ngForm">
+        <label>USERNAME</label>
+        <input type="text" name="number" [(ngModel)] = "selectedPolicy.username">
+        <br>
+        <label>PASSWORD</label>
+        <input type="password" name="amount" [(ngModel)] = "selectedPolicy.password">
+        <br>
+        <label>Adresse</label>
+        <input type="text" name="adresse" [(ngModel)] = "selectedPolicy.adresse">
+        <br>
+        <label>Tel</label>
+        <input type="text" name="tel" [(ngModel)] = "selectedPolicy.tel">
+        <br>
+        <label>nom</label>
+        <input type="text" name="nom" [(ngModel)] = "selectedPolicy.nom">
+        <br>
+        <label>prenom</label>
+        <input type="password" name="prenom" [(ngModel)] = "selectedPolicy.prenom">
+        <br>
+        <label>email</label>
+        <input type="text" name="email" [(ngModel)] = "selectedPolicy.email">
+        <br>
+        <label>profil</label>
+        <input type="text" name="profil" [(ngModel)] = "selectedPolicy.profil">
+        <br>
+        <label>imageName</label>
+        <input type="file" name="imageName" [(ngModel)] = "selectedPolicy.imageName">
+        <br>
+        <label>domaine d'activité</label>
+        <input type="text" name="domaine" [(ngModel)] = "selectedPolicy.domaineActivite">
+        <br>
+        <label>ninea</label>
+        <input type="number" name="ninea" [(ngModel)] = "selectedPolicy.ninea">
+        <br>
+        <label>localisation</label>
+        <input type="text" name="localisation" [(ngModel)] = "selectedPolicy.localisation">
+        <label>Date De Création</label>
+        <input type="date" name="ninea" [(ngModel)] = "selectedPolicy.dateCreation">
+        <br>
+        <input type="button" (click)="createOrUpdatePolicy(f)" value="Create or Update Policy">
+    </form>
+
+</body>
+</html>
