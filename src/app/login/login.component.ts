@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TOKEN_NAME, AuthentificationService } from '../authentification.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,35 @@ import { FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  connexionUser = FormGroup
-  constructor() { }
+  formulaire: FormGroup;
+  submitted = false;
+  constructor(private formBuilder: FormBuilder, private authService: AuthentificationService) { }
+
+  private token = localStorage.getItem(TOKEN_NAME)
 
   ngOnInit() {
+    this.formulaire = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
-  connexion() {
-    console.log(this.connexionUser);
-  }
+  get f() { return this.formulaire.controls; }
+
+    onSubmit() {
+      const username = this.formulaire.get("username").value;
+      const password = this.formulaire.get("password").value;  
+        this.submitted = true;
+        // stop here if form is invalid
+        if (this.formulaire.invalid) {
+            return;
+        }
+        const user = {
+          username: username,
+          password: password
+        }
+        //console.log(this.authService.login(user));
+        this.authService.login(user)
+        console.log(this.formulaire.value)
+    }
 
 }
