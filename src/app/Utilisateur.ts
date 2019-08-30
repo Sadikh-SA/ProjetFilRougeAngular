@@ -11,7 +11,7 @@ export  class  Utilisateur {
     tel: string;
     statut: boolean;
     profil: string;
-    dateCreation: Date;
+    //dateCreation: Date;
     image_name: string;
     updateAt: Date;
     partenaire: number;

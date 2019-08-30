@@ -21,7 +21,8 @@ export class AuthentificationService {
   }
 
   setToken(token: string): void {
-    localStorage.setItem(TOKEN_NAME, token);
+    localStorage.setItem("token", token);
+    this.jwt = token;
   }
   login(user) {
     return this.http.post<any>(`${this.url}/login`,user);
@@ -32,9 +33,7 @@ export class AuthentificationService {
     this.helper.isTokenExpired(token);
     if(!token) return true;
 
-    // const date = this.helper.getTokenExpirationDate(this.getToken());
-     
-    
+    // const date = this.helper.getTokenExpirationDate(this.getToken()); 
   }
 
   

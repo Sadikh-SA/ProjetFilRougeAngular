@@ -1,7 +1,7 @@
 //FilRouge/Partenaire/User
 
 export  class  PartenaireUser {
-    id: number;
+    //id: number;
     username:  string;
     password:  string;
     nom: string;
@@ -10,10 +10,10 @@ export  class  PartenaireUser {
     email: string;
     tel: string;
     profil: string;
-    dateCreation: Date;
+    partenaire: number;
     imageName: string;
-    ninea: number;
-    localisation: string;
-    domaineActivite: string;
-    dateCreation1: Date;
+    // ninea: number;
+    // localisation: string;
+    // domaineActivite: string;
+    // dateCreation1: Date;
 }

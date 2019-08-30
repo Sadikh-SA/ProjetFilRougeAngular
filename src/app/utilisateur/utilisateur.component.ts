@@ -15,7 +15,7 @@ export class UtilisateurComponent implements OnInit {
   user:  Utilisateur[];
   adminpart: PartenaireUser[]
   selectedPolicy:  PartenaireUser  = { 
-      id: null,
+      //id: null,
       username:  null,
       password:  null,
       nom: null,
@@ -24,26 +24,27 @@ export class UtilisateurComponent implements OnInit {
       email: null,
       tel: null,
       profil: null,
-      dateCreation: null,
+      partenaire: null,
       imageName: null,
-      ninea: null,
-      localisation: null,
-      domaineActivite: null,
-      dateCreation1: null,
+      // ninea: null,
+      // localisation: null,
+      // domaineActivite: null,
+      // dateCreation1: null,
   };
 
   constructor( private listerService: ListerService, private ajouterService: AjouterService) { }
 
   ngOnInit() {
-    this.listerService.listerUtlisateur().subscribe((user: Utilisateur[])=>{
+    this.listerService.listerUtlisateur().subscribe(
+      (user: Utilisateur[])=>{
       this.user = user;
-      console.log(this.user)
+      console.log(user)
     });
   }
   selectPolicy(policy: PartenaireUser){
     this.selectedPolicy = policy;
   }
-  createOrUpdatePolicy(data){
+  ajouter(data){
     // if(this.selectedPolicy && this.selectedPolicy.id){
     //   form.value.id = this.selectedPolicy.id;
     //   this.ajouterService.updatePolicy(form.value).subscribe((policy: Policy)=>{
@@ -52,8 +53,8 @@ export class UtilisateurComponent implements OnInit {
     // }
     // else{
 
-      this.ajouterService.createAdminPartenaire(data.value).subscribe((adminpart: PartenaireUser)=>{
-        console.log(adminpart, adminpart);
+      this.ajouterService.createAdminPartenaire(data.value).subscribe((res)=>{
+        console.log(res);
       });
     //}
 

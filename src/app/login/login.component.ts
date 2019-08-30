@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   //private token = localStorage.getItem(TOKEN_NAME)
   private helper = new JwtHelperService();
-  private header = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"));
+  //private header = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"));
 
   jwt: string;
   username: string;
@@ -53,12 +53,15 @@ export class LoginComponent implements OnInit {
         console.log(this.roles)
         this.username = decoderToken.username;
         console.log(this.username)
-        localStorage.setItem(res.token, res.token);  
+        localStorage.setItem("token",res.token);
+        console.log(localStorage.getItem("token"))  
         this.router.navigateByUrl("/ajouter/admin/partenaire")
       },
-      err => console.log(err)
+      err => {
+        alert("Login ou Mot de Passe Incoorect")
+        console.log(err)
+      } 
     );
     console.log(this.formulaire.value)
   }
-
 }

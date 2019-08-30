@@ -11,6 +11,19 @@
 <body>
 
 
+    <form #f ="ngForm">
+        <label>NINÉA</label>
+        <input type="number" name="ninea" [(ngModel)] = "part.ninea">
+        <br>
+        <label>LOCALISATION</label>
+        <input type="text" name="localisation" [(ngModel)] = "part.localisation">
+        <br>
+        <label>Domaine D'activité</label>
+        <input type="text" name="domaineActivite" [(ngModel)] = "part.domaineActivite">
+        <br>
+        <input type="button" (click)="ajouterParte(f)" value="Ajouter">
+    </form>
+
 
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>

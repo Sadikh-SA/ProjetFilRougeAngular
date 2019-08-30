@@ -25,7 +25,7 @@
         <input type="text" name="nom" [(ngModel)] = "selectedPolicy.nom">
         <br>
         <label>prenom</label>
-        <input type="password" name="prenom" [(ngModel)] = "selectedPolicy.prenom">
+        <input type="text" name="prenom" [(ngModel)] = "selectedPolicy.prenom">
         <br>
         <label>email</label>
         <input type="text" name="email" [(ngModel)] = "selectedPolicy.email">
@@ -36,18 +36,16 @@
         <label>imageName</label>
         <input type="file" name="imageName" [(ngModel)] = "selectedPolicy.imageName">
         <br>
-        <label>domaine d'activité</label>
-        <input type="text" name="domaine" [(ngModel)] = "selectedPolicy.domaineActivite">
+        <label>partenaire</label>
+        <input type="number" name="domaine" [(ngModel)] = "selectedPolicy.partenaire">
         <br>
-        <label>ninea</label>
+        <!--<label>ninea</label>
         <input type="number" name="ninea" [(ngModel)] = "selectedPolicy.ninea">
         <br>
         <label>localisation</label>
         <input type="text" name="localisation" [(ngModel)] = "selectedPolicy.localisation">
-        <label>Date De Création</label>
-        <input type="date" name="ninea" [(ngModel)] = "selectedPolicy.dateCreation">
-        <br>
-        <input type="button" (click)="createOrUpdatePolicy(f)" value="Create or Update Policy">
+        <br>-->
+        <input type="button" (click)="ajouter(f)" value="Ajouter">
     </form>
 
 </body>

@@ -11,7 +11,8 @@ const routes: Routes = [
     { path: "auth", component: AuthentificationComponent},
     { path: 'lister/user', component: UtilisateurComponent },
     { path: 'lister/partenaire', component: PartenaireComponent },
-    { path: 'ajouter/admin/partenaire', component: UtilisateurComponent }
+    { path: 'ajouter/admin/partenaire', component: UtilisateurComponent },
+    { path: 'ajouter/partenaire', component: PartenaireComponent }
 ]
 
 
