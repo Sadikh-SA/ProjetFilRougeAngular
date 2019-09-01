@@ -7,12 +7,12 @@ export  class  Utilisateur {
     nom: string;
     prenom: string;
     adresse: string;
-    email: string;
     tel: string;
+    email: string;
     statut: boolean;
     profil: string;
     //dateCreation: Date;
-    image_name: string;
+    imageName: string;
     updateAt: Date;
     partenaire: number;
     compte: number;

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthentificationService } from './authentification.service';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { PartenaireComponent } from './partenaire/partenaire.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PartenaireComponent } from './partenaire/partenaire.component';
     LoginComponent,
     AuthentificationComponent,
     UtilisateurComponent,
-    PartenaireComponent
+    PartenaireComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,

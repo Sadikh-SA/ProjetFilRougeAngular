@@ -48,14 +48,15 @@ export class LoginComponent implements OnInit {
     this.authService.login(user).subscribe(
       res => {
         console.log(res)
+        //let jwt = res.headers.get('Authorization')
         let decoderToken = this.helper.decodeToken(res.token);
         this.roles = decoderToken.roles;
-        console.log(this.roles)
+        console.log(this.roles);
         this.username = decoderToken.username;
         console.log(this.username)
         localStorage.setItem("token",res.token);
         console.log(localStorage.getItem("token"))  
-        this.router.navigateByUrl("/ajouter/admin/partenaire")
+        this.router.navigateByUrl("/")
       },
       err => {
         alert("Login ou Mot de Passe Incoorect")
