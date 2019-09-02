@@ -12,6 +12,7 @@ export class AjouterService {
   url1 = "http://127.0.0.1:8000/filrouge/partenaire/ajouter";
   url2 = "http://127.0.0.1:8000/filrouge/faire/envoie";
   url3 = "http://127.0.0.1:8000/filrouge/faire/retrait/{id}";
+  url4 = "http://127.0.0.1:8000/filrouge/fairedepot";
   private header ={headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))}
   
 
@@ -30,6 +31,11 @@ export class AjouterService {
   ajouterTransaction(transaction: any): Observable<any>{
     console.log(this.header);
     return this.http.post<any>(`${this.url2}`, transaction, this.header)
+  }
+
+  creerDepot(depot: any): Observable<any>{
+    console.log(this.header);
+    return this.http.post<any>(`${this.url4}`, depot, this.header)
   }
 
 }
