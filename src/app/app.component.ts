@@ -36,6 +36,10 @@ export class AppComponent {
     return this.authService.isAdminPartener();
   }
 
+  logOut() {
+    return this.authService.logOut()
+  }
+
   isAuthenticated(){
     return this.authService.isAuthenticated();
   }

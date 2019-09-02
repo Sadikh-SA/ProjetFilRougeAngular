@@ -2,6 +2,8 @@ import { HttpClient, } from '@angular/common/http';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { from, Subscriber } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 
 export const TOKEN_NAME: string = 'token';
@@ -14,7 +16,7 @@ export class AuthentificationService {
   username: string;
   roles: Array<string>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getToken(): string {
     return localStorage.getItem(TOKEN_NAME);
@@ -26,6 +28,15 @@ export class AuthentificationService {
   }
   login(user) {
     return this.http.post<any>(`${this.url}/login`,user);
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('roles');
+    this.jwt=undefined;
+    this.username=undefined;
+    this.roles=undefined;
+    this.router.navigateByUrl("/login")
   }
 
   isSuperAdmin(){
