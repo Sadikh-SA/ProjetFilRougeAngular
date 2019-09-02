@@ -5,6 +5,7 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { LoginComponent } from './login/login.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { PartenaireComponent } from './partenaire/partenaire.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 const routes: Routes = [
     { path: "login", component: LoginComponent},
@@ -12,7 +13,9 @@ const routes: Routes = [
     { path: 'lister/user', component: UtilisateurComponent },
     { path: 'lister/partenaire', component: PartenaireComponent },
     { path: 'ajouter/admin/partenaire', component: UtilisateurComponent },
-    { path: 'ajouter/partenaire', component: PartenaireComponent }
+    { path: 'ajouter/partenaire', component: PartenaireComponent },
+    { path: 'retirer/transaction', component: TransactionComponent },
+    { path: 'ajouter/transaction', component: TransactionComponent }
 ]
 
 

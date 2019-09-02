@@ -13,6 +13,7 @@ import { AuthentificationService } from './authentification.service';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { PartenaireComponent } from './partenaire/partenaire.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { DepotComponent } from './depot/depot.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TransactionComponent } from './transaction/transaction.component';
     AuthentificationComponent,
     UtilisateurComponent,
     PartenaireComponent,
-    TransactionComponent
+    TransactionComponent,
+    DepotComponent
   ],
   imports: [
     BrowserModule,

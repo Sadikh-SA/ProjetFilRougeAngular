@@ -57,6 +57,7 @@ export class AuthentificationService {
      this.isAdminPartener() 
     || this.isCaissier() || this.isUser() ||
      this.isSuperAdmin() || this.isPartener());
+     
   }
 
   isTokenExpired(token?: string): boolean {

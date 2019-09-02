@@ -1,3 +1,86 @@
-<p>
-  transaction works!
-</p>
+<div class="col-lg-12 mb-5">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="h6 text-uppercase mb-0">FAIRE ENVOIE D'ARGENT</h3>
+    </div>
+    <div class="card-body">
+      <form class="form-horizontal" #f ="ngForm">
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label">NOM ENVOYEUR</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="nomEnvoyeur" [(ngModel)] = "trans.nomEnvoyeur">
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label">PRÉNOM ENVOYEUR</label>
+          <div class="col-md-9">
+            <input type="text" name="prenomEnvoyeur" [(ngModel)] = "trans.prenomEnvoyeur" class="form-control">
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label">ADRESSE ENVOYEUR</label>
+          <div class="col-md-9">
+            <input type="text" placeholder="" name="adresseEnvoyeur" [(ngModel)] = "trans.adresseEnvoyeur" class="form-control">
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row ">
+            <label class="col-sm-3 form-control-label">TÉLÉPHONE ENVOYEUR</label>
+            <div class="col-sm-9">
+              <input type="text" name="telEnvoyeur" [(ngModel)] = "trans.telEnvoyeur" class="form-control">
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+            <label class="col-sm-3 form-control-label">CNI ENVOYEUR</label>
+            <div class="col-sm-9">
+              <input type="text" name="CNIEnvoyeur" [(ngModel)] = "trans.CNIEnvoyeur" class="form-control">
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row ">
+            <label class="col-sm-3 form-control-label">NOM BÉNÉFICIAIRE</label>
+            <div class="col-sm-9">
+              <input type="text" name="nomBeneficiaire" [(ngModel)] = "trans.nomBeneficiaire" class="form-control">
+            </div>
+          </div>
+          <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label">PRÉNOM BÉNÉFICIAIRE</label>
+          <div class="col-md-9">
+            <input type="text" name="prenomBeneficiaire" [(ngModel)] = "trans.prenomBeneficiaire" placeholder="" class="form-control">
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label">ADRESSE BÉNÉFICIAIRE</label>
+          <div class="col-md-9">
+            <input type="text" name="adresseBeneficiaire" [(ngModel)] = "trans.adresseBeneficiaire" placeholder="" class="form-control">
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+            <label class="col-sm-3 form-control-label">TÉLÉPHONE BÉNÉFICIAIRE</label>
+            <div class="col-sm-9">
+              <input type="text" name="telBeneficiaire" [(ngModel)] = "trans.telBeneficiaire" class="form-control">
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+          <label class="col-sm-3 form-control-label">MONTANT ENVOYER</label>
+          <div class="col-sm-9">
+            <input type="number" name="montantEnvoyer" [(ngModel)] = "trans.montantEnvoyer" class="form-control">
+          </div>
+      </div>
+        <div class="form-group row">
+          <div class="col-md-9 ml-auto">
+            <button type="submit" class="btn btn-secondary">Annuler</button>
+            <button type="button" (click)="ajouterTrans(f)" class="btn btn-primary" value="Envoyer">Envoyer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

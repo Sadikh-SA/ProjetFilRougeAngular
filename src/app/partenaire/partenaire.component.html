@@ -1,57 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
 
+<div class="col-lg-12 mb-5">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">Ajouter Un Parteanire</h3>
+        </div>
+        <div class="card-body">
+            <form class="form-horizontal" #f="ngForm">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">NINEA</label>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control" name="ninea" [(ngModel)]="part.ninea">
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">Localisation</label>
+                    <div class="col-md-9">
+                        <input type="text" name="localisation" [(ngModel)]="part.localisation" class="form-control">
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">Domaine D'Activité</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="placeholder" name="domaineActivite" [(ngModel)]="part.domaineActivite" class="form-control">
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="form-group row">
+                    <div class="col-md-9 ml-auto">
+                        <button type="submit" class="btn btn-secondary">Annuler</button>
+                        <button type="button" (click)="ajouterParte(f)" class="btn btn-primary" value="Ajouter">Ajouter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-    <form #f ="ngForm">
-        <label>NINÉA</label>
-        <input type="number" name="ninea" [(ngModel)] = "part.ninea">
-        <br>
-        <label>LOCALISATION</label>
-        <input type="text" name="localisation" [(ngModel)] = "part.localisation">
-        <br>
-        <label>Domaine D'activité</label>
-        <input type="text" name="domaineActivite" [(ngModel)] = "part.domaineActivite">
-        <br>
-        <input type="button" (click)="ajouterParte(f)" value="Ajouter">
-    </form>
-
-
-    <table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>NINEA</th>
-                <th>LOCALISATION</th>
-                <th>DOMAINE D'ACTIVITÉ</th>
-                <th>STATUS</th>
-                <th>DATE DE CREATION</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let partenaire of partenaire">
-                <td>{{partenaire.ninea}}</td>
-                <td>{{partenaire.localisation}}</td>
-                <td>{{partenaire.domaineActivite}}</td>
-                <td>{{partenaire.statut}}</td>
-                <td>{{partenaire.dateCreation}}</td>
-            </tr>
-        </tbody>
-      </table>  
-</body>
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    } );
-</script>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-</html>
+<div class="page-holder w-100 d-flex flex-wrap">
+    <div class="container-fluid px-xl-12">
+        <section class="py-5">
+            <div class="col-lg-12 mb-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="text-uppercase mb-0">LISTER LES PARTENAIRES</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-hover card-text" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>NINEA</th>
+                                    <th>LOCALISATION</th>
+                                    <th>DOMAINE D'ACTIVITÉ</th>
+                                    <th>STATUS</th>
+                                    <th>DATE DE CREATION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let partenaire of partenaire">
+                                    <td>{{partenaire.ninea}}</td>
+                                    <td>{{partenaire.localisation}}</td>
+                                    <td>{{partenaire.domaineActivite}}</td>
+                                    <td>{{partenaire.statut}}</td>
+                                    <td>{{partenaire.dateCreation}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

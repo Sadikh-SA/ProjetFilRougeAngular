@@ -39,6 +39,8 @@ export class PartenaireComponent implements OnInit {
 
       this.ajouterService.creerPartenaire(data.value).subscribe((res)=>{
         console.log(res);
+        alert(res.message);
+        window.location.reload();
       });
     //}
 
