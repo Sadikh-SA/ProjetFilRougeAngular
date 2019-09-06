@@ -17,10 +17,12 @@ export class Transaction {
     CNIBeneficiaire: number;
     dateEnvoie: Date;
     dateRetrait: Date;
-    commissionTTC: number;
+    commissionTTC: any;
     type: number;
     commissionEtat: number;
     commissionWari: number;
     commissionEnvoi: number;
     commissionRetrait: number;
+    utilisateur: any;
+    userRetrait: any;
 }

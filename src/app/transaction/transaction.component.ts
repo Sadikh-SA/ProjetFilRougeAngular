@@ -27,12 +27,16 @@ export class TransactionComponent implements OnInit {
     totalEnvoyer: null,
     montantRetirer: null,
     CNIBeneficiaire: null,
-    dateEnvoie: null,    dateRetrait: null,    commissionTTC: null,
+    dateEnvoie: null,
+    dateRetrait: null,
+    commissionTTC: null,
     type: null,
     commissionEtat: null,
     commissionWari: null,
     commissionEnvoi: null,
     commissionRetrait: null,
+    utilisateur: null,
+    userRetrait: null
   }
 
   constructor( private listerService: ListerService, private ajouterService: AjouterService) { }

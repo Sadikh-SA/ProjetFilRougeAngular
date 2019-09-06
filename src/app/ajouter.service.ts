@@ -9,6 +9,7 @@ import { PartenaireUser } from './partenaireuser';
 export class AjouterService {
 
   url = "http://127.0.0.1:8000/filrouge/ajouter/partenaire";
+  urlcompte = "http://127.0.0.1:8000/filrouge/compte/ajouter";
   url1 = "http://127.0.0.1:8000/filrouge/partenaire/ajouter";
   url2 = "http://127.0.0.1:8000/filrouge/faire/envoie";
   url3 = "http://127.0.0.1:8000/filrouge/faire/retrait/{id}";
@@ -36,6 +37,11 @@ export class AjouterService {
   creerDepot(depot: any): Observable<any>{
     console.log(this.header);
     return this.http.post<any>(`${this.url4}`, depot, this.header)
+  }
+
+  creerCompte(compte: any): Observable<any>{
+    console.log(this.header);
+    return this.http.post<any>(`${this.urlcompte}`,compte, this.header)
   }
 
 }

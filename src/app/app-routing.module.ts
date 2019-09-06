@@ -7,6 +7,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { PartenaireComponent } from './partenaire/partenaire.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { DepotComponent } from './depot/depot.component';
+import { CompteComponent } from './compte/compte.component';
 
 const routes: Routes = [
     { path: "login", component: LoginComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'ajouter/transaction', component: TransactionComponent },
     { path: 'depot', component: DepotComponent },
     { path: 'deconnexion', component: LoginComponent },
+    { path: 'ajouter/compte', component: CompteComponent }
 ]
 
 

@@ -11,7 +11,7 @@
               </div>
             </form>
           </li>
-          <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="avatar.png" alt="Moimeme" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></a>
+          <li class="nav-item dropdown ml-auto" *ngIf="isAuthenticated()"><a id="userInfo" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img src="avatar.png" alt="Moimeme" style="max-width: 2.5rem;" class="img-fluid rounded-circle shadow"></a>
             <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong class="d-block text-uppercase headings-font-family">Ababacar Sadikh GUEYE</strong><small>Developpeur Web</small></a>
               <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Paramètre</a><a href="#" class="dropdown-item">Autres Activité</a>
               <div class="dropdown-divider"></div><a (click)="logOut()" class="dropdown-item">Déconnexion</a>
@@ -24,29 +24,29 @@
       <div id="sidebar" class="sidebar py-3" *ngIf="isAuthenticated()">
         <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MENU</div>
         <ul class="sidebar-menu list-unstyled">
-          <li class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-paperwork-1 mr-3 text-gray"></i><span>AJOUTER</span></a>
+          <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari() || isPartener() || isAdminPartener() "><a routerLink="ajouter/admin/partenaire" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-paperwork-1 mr-3 text-gray"></i><span>AJOUTER</span></a>
             <div id="pages" class="collapse">
               <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                <li class="sidebar-list-item"><a routerLink="ajouter/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Partenaire</a></li>
-                <li class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Utilisateur</a></li>
-                <li class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Compte</a></li>
-                <li class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Profil</a></li>
+                <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Partenaire</a></li>
+                <li *ngIf="isPartener() || isAdminPartener() " class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Utilisateur</a></li>
+                <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="ajouter/compte" class="sidebar-link text-muted pl-lg-5">Ajouter Un Compte</a></li>
+                <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Profil</a></li>
               </ul>
             </div>
           </li>
           <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages1" aria-expanded="false" aria-controls="pages1" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>LISTER</span></a>
             <div id="pages1" class="collapse">
               <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                <li class="sidebar-list-item"><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Partenaire</a></li>
-                <li class="sidebar-list-item"><a routerLink="lister/user" class="sidebar-link text-muted pl-lg-5">Lister Utilisateur</a></li>
-                <li class="sidebar-list-item"><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Compte</a></li>
-                <li class="sidebar-list-item"><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Profil</a></li>
-                <li class="sidebar-list-item"><a routerLink="lister/transaction" class="sidebar-link text-muted pl-lg-5">Lister Transaction</a></li>
-                <li class="sidebar-list-item"><a routerLink="lister/depot" class="sidebar-link text-muted pl-lg-5">Lister Dépot-Compte</a></li>
+                <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari()" ><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Partenaire</a></li>
+                <li class="sidebar-list-item" *ngIf="isPartener() || isAdminPartener() "><a routerLink="lister/user" class="sidebar-link text-muted pl-lg-5">Lister Utilisateur</a></li>
+                <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari() || isPartener() || isAdminPartener() "><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Compte</a></li>
+                <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari()"><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Profil</a></li>
+                <li class="sidebar-list-item" *ngIf="isPartener() || isAdminPartener() || isUser() "><a routerLink="lister/transaction" class="sidebar-link text-muted pl-lg-5">Lister Transaction</a></li>
+                <li class="sidebar-list-item" *ngIf="isCaissier()" ><a routerLink="lister/depot" class="sidebar-link text-muted pl-lg-5">Lister Dépot-Compte</a></li>
               </ul>
             </div>
           </li>
-          <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#pages2" aria-expanded="false" aria-controls="pages2" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>TRANSACTION</span></a>
+          <li class="sidebar-list-item" *ngIf=" isUser() || isPartener() || isAdminPartener() " ><a href="#" data-toggle="collapse" data-target="#pages2" aria-expanded="false" aria-controls="pages2" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>TRANSACTION</span></a>
             <div id="pages2" class="collapse">
               <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
                 <li class="sidebar-list-item"><a routerLink="ajouter/transaction" class="sidebar-link text-muted pl-lg-5">DEPOT</a></li>
@@ -54,7 +54,7 @@
               </ul>
             </div>
           </li>
-          <li class="sidebar-list-item"><a routerLink="depot" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>DÉPÔT</span></a></li>
+          <li class="sidebar-list-item" *ngIf=" isCaissier() " ><a routerLink="depot" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>DÉPÔT</span></a></li>
         </ul>
       </div>
       <div class="page-holder w-100 d-flex flex-wrap">

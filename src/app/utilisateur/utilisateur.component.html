@@ -1,135 +1,206 @@
-<div class="page-holder w-100 d-flex flex-wrap">
+<div class="col-lg-12 mb-5" *ngIf="isAdminWari() || isSuperAdmin() || isPartener() || isAdminPartener()">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">Faire Ajout</h3>
+        </div>
+        <div class="card-body">
+            <form class="form-horizontal row" #f="ngForm">
+                <div class="col-md-6" >
+                    <div class="card-header col-md-6">
+                        <h3 class="h6 text-uppercase mb-0">UTILISATEUR</h3>
+                    </div>
+                    <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Username</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="username" [(ngModel)]="registerUserData.username">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Password</label>
+                            <div class="col-md-9">
+                                <input type="password" name="password" [(ngModel)]="registerUserData.password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Nom</label>
+                            <div class="col-md-9">
+                                <input type="text" placeholder="placeholder" name="nom" [(ngModel)]="registerUserData.nom" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row ">
+                            <label class="col-sm-3 form-control-label">Prénom</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="prenom" [(ngModel)]="registerUserData.prenom" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Adresse</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="adresse" [(ngModel)]="registerUserData.adresse" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row ">
+                            <label class="col-sm-3 form-control-label">Téléphone</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="tel" [(ngModel)]="registerUserData.tel" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="text" name="email" [(ngModel)]="registerUserData.email" placeholder="Entrer votre email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">imageName</label>
+                            <div class="col-sm-9">
+                                <img [src]="imageUrl" alt="" style="width: 200px;height:100px; ">
+                                <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)" name="imageName" class="form-control">
+                            </div>
+                        </div>
+                </div>
+                <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-md-12 form-control-label">Profil
+                                <br><small class="text-primary">Rôles dans le Système</small>
+                            </label>
+                            <div class="col-md-12">
+                                <div class="custom-control custom-radio custom-control-inline" *ngIf="isAdminWari()">
+                                    <input id="profil" type="radio" id="profil" name="profil" [(ngModel)]="registerUserData.profil" value="10" class="custom-control-input">
+                                    <label id="profil" for="profil" (click)="afficher1()" class="custom-control-label">Admin Système</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline" *ngIf="isAdminWari() || isSuperAdmin()">
+                                    <input id="profil1" type="radio" name="profil" [(ngModel)]="registerUserData.profil" value="11" class="custom-control-input">
+                                    <label id="profil1" for="profil1" (click)="afficher()" class="custom-control-label">Partenaire</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline" *ngIf="isPartener()">
+                                    <input id="profil2" type="radio" name="profil" [(ngModel)]="registerUserData.profil" value="12" class="custom-control-input">
+                                    <label id="profil2" for="profil2" (click)="afficher2()" class="custom-control-label">Admin Partenaire</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline" *ngIf="isPartener() || isAdminPartener()">
+                                    <input id="profil3" type="radio" name="profil" [(ngModel)]="registerUserData.profil" value="14" class="custom-control-input">
+                                    <label id="profil3" for="profil3" (click)="afficher1()" class="custom-control-label">Utilisateur</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline" *ngIf="isAdminWari() || isSuperAdmin()">
+                                    <input id="profil4" type="radio" name="profil" [(ngModel)]="registerUserData.profil" value="13" class="custom-control-input">
+                                    <label id="profil4" for="profil4" (click)="afficher1()" class="custom-control-label">Caissier</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div *ngIf="(isSuperAdmin() || isAdminWari()) && test" id="newpartenaire">
+                        <div class="card-header">
+                            <h3 class="h6 text-uppercase mb-0">Ajouter Un PARTENAIRE</h3>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Ninéa</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" name="ninea" [(ngModel)]="registerUserData.ninea">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Localisation</label>
+                            <div class="col-md-9">
+                                <input type="text" name="localisation" [(ngModel)]="registerUserData.localisation" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">Domaine D'Activité</label>
+                            <div class="col-md-9">
+                                <input type="text" placeholder="placeholder" name="domaineActivite" [(ngModel)]="registerUserData.domaineActivite" class="form-control">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="form-group row" *ngIf="isPartener() && test2" id="partenaire">
+                        <label class="col-md-3 form-control-label">Partenaire</label>
+                        <div class="col-md-9">
+                            <input type="text" name="partenaire" [(ngModel)]="registerUserData.partenaire" class="form-control">
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                    <div *ngIf="(isAdminWari() || isSuperAdmin() || isPartener() || isAdminPartener()) && test" id="newcompte">
+                        <div class="card-header">
+                            <h3 class="h6 text-uppercase mb-0">Ajouter Un COMPTE</h3>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">CODE BANQUE</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" name="codeBank" [(ngModel)]="registerUserData.codeBank">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">BÉNÉFICIAIRE COMPTE</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="nomBeneficiaire" [(ngModel)]="registerUserData.nomBeneficiaire">
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="form-group row" *ngIf="isAdminPartener() || isPartener() && test2" id="compte">
+                        <label class="col-md-3 form-control-label">NUMÉRO COMPTE</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" name="numeroCompte" [(ngModel)]="registerUserData.numeroCompte">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row" style="width: 50%; margin: 0 auto;" *ngIf="test || test1 || test2">
+                    <div class="col-md-12 ml-auto">
+                        <button type="submit" class="btn btn-secondary">Annuler</button>
+                        <button type="submit" (click)="registerUser()" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>  
+
+<div class="page-holder w-100 d-flex flex-wrap" *ngIf="isAdminWari() || isSuperAdmin() ">
     <div class="container-fluid px-xl-12">
-      <section class="py-5">
-          <div class="col-lg-12 mb-5" >
-              <div class="card">
-                <div class="card-header">
-                  <h6 class="text-uppercase mb-0">LISTER LES UTILISATEURS</h6>
+        <section class="py-5">
+            <div class="col-lg-12 mb-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="text-uppercase mb-0">LISTER LES UTILISATEURS</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-hover card-text" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>NOM</th>
+                                    <th>PRENOM</th>
+                                    <th>ADRESSE</th>
+                                    <th>EMAIL</th>
+                                    <th>TELEPHONE</th>
+                                    <th>ROLE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let utilisateur of user">
+                                    <td>{{utilisateur.nom}}</td>
+                                    <td>{{utilisateur.prenom}}</td>
+                                    <td>{{utilisateur.adresse}}</td>
+                                    <td>{{utilisateur.email}}</td>
+                                    <td>{{utilisateur.tel}}</td>
+                                    <td>{{utilisateur.roles[0]}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="card-body">                           
-                  <table class="table table-striped table-hover card-text" style="width: 100%">
-                    <thead>
-                      <tr>
-                        <th>NOM</th>
-                        <th>PRENOM</th>
-                        <th>ADRESSE</th>
-                        <th>EMAIL</th>
-                        <th>TELEPHONE</th>
-                        <th>ROLE</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let partenaire of user">
-                            <td>{{partenaire.nom}}</td>
-                            <td>{{partenaire.prenom}}</td>
-                            <td>{{partenaire.adresse}}</td>
-                            <td>{{partenaire.email}}</td>
-                            <td>{{partenaire.tel}}</td>
-                            <td>{{partenaire.roles[0]}}</td>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
-      </section>
+        </section>
     </div>
 </div>
-
-
-<div class="col-lg-12 mb-5">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="h6 text-uppercase mb-0">Ajouter Un Parteanire</h3>
-      </div>
-      <div class="card-body">
-        <form class="form-horizontal" #f ="ngForm">
-          <div class="form-group row">
-            <label class="col-md-3 form-control-label">Username</label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" name="username" [(ngModel)] = "selectedPolicy.username">
-            </div>
-          </div>
-          <div class="line"></div>
-          <div class="form-group row">
-            <label class="col-md-3 form-control-label">Password</label>
-            <div class="col-md-9">
-              <input type="password" name="password" [(ngModel)] = "selectedPolicy.password" class="form-control">
-            </div>
-          </div>
-          <div class="line"></div>
-          <div class="form-group row">
-            <label class="col-md-3 form-control-label">Nom</label>
-            <div class="col-md-9">
-              <input type="text" placeholder="placeholder" name="nom" [(ngModel)] = "selectedPolicy.nom" class="form-control">
-            </div>
-          </div>
-          <div class="line"></div>
-          <div class="form-group row ">
-              <label class="col-sm-3 form-control-label">Prénom</label>
-              <div class="col-sm-9">
-                <input type="text" name="prenom" [(ngModel)] = "selectedPolicy.prenom" class="form-control">
-              </div>
-          </div>
-          <div class="line"></div>
-          <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Adresse</label>
-              <div class="col-sm-9">
-                <input type="text" name="adresse" [(ngModel)] = "selectedPolicy.adresse" class="form-control">
-              </div>
-          </div>
-          <div class="line"></div>
-          <div class="form-group row ">
-              <label class="col-sm-3 form-control-label">Téléphone</label>
-              <div class="col-sm-9">
-                <input type="text" name="tel" [(ngModel)] = "selectedPolicy.tel" class="form-control">
-              </div>
-            </div>
-            <div class="line"></div>
-          <div class="form-group row">
-            <label class="col-md-3 form-control-label">Email</label>
-            <div class="col-md-9">
-              <input type="text" name="email" [(ngModel)] = "selectedPolicy.email" placeholder="Entrer votre email" class="form-control">
-            </div>
-          </div>
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="form-group row">
-            <label class="col-md-3 form-control-label">Checkboxes &amp; radios <br><small class="text-primary">Bootstrap4 custom controls</small></label>
-            <div class="col-md-9">
-              <div class="custom-control custom-radio custom-control-inline">
-                <input id="profil" type="radio" name="profil" [(ngModel)] = "selectedPolicy.profil" class="custom-control-input">
-                <label for="profil" class="custom-control-label">Profil 1</label>
-              </div>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input id="profil" type="radio" name="profil" [(ngModel)] = "selectedPolicy.profil" class="custom-control-input">
-                <label for="profil" class="custom-control-label">Profil 2</label>
-              </div>
-              <div class="custom-control custom-radio custom-control-inline">
-                  <input id="profil" type="radio" name="profil" [(ngModel)] = "selectedPolicy.profil" class="custom-control-input">
-                  <label for="profil" class="custom-control-label">Profil 3</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input id="profil" type="radio" name="profil" [(ngModel)] = "selectedPolicy.profil" class="custom-control-input">
-                  <label for="profil" class="custom-control-label">Profil 4</label>
-                </div>
-            </div>
-          </div>
-          <div class="line"></div>
-          <div class="form-group row">
-              <label class="col-sm-3 form-control-label">imageName</label>
-              <div class="col-sm-9">
-                <input type="file" name="imageName" name="profil" [(ngModel)] = "selectedPolicy.profil" class="form-control">
-              </div>
-          </div>
-          <div class="line"></div>
-          <div class="form-group row">
-            <div class="col-md-9 ml-auto">
-              <button type="submit" class="btn btn-secondary">Annuler</button>
-              <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>

@@ -14,7 +14,13 @@ export  class  Utilisateur {
     //dateCreation: Date;
     imageName: string;
     updateAt: Date;
-    partenaire: number;
+    partenaire: any;
     compte: number;
+    ninea: number;
+    localisation: string;
+    
+    codeBank: number;
+    nomBeneficiaire: string;
+
     roles: JSON;
 }
