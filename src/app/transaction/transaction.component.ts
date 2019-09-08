@@ -42,13 +42,21 @@ export class TransactionComponent implements OnInit {
   constructor( private listerService: ListerService, private ajouterService: AjouterService) { }
 
   ngOnInit() {
-    this.listerService.listerTransaction().subscribe((transaction: Transaction[])=>{
+    this.listerService.listerTransaction().subscribe((transaction: any)=>{
       this.transaction = transaction;
       console.log(this.transaction)
     })
   }
 
   ajouterTrans(data){
+
+      // if(this.selectedPolicy && this.selectedPolicy.id){
+      //   form.value.id = this.selectedPolicy.id;
+      //   this.ajouterService.updatePolicy(form.value).subscribe((policy: Policy)=>{
+      //     console.log("Policy updated" , policy);
+      //   });
+      // }
+
       this.ajouterService.ajouterTransaction(data.value).subscribe((res)=>{
         alert(res.message)
         console.log(res);

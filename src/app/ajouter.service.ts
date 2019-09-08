@@ -10,10 +10,11 @@ export class AjouterService {
 
   url = "http://127.0.0.1:8000/filrouge/ajouter/partenaire";
   urlcompte = "http://127.0.0.1:8000/filrouge/compte/ajouter";
-  url1 = "http://127.0.0.1:8000/filrouge/partenaire/ajouter";
-  url2 = "http://127.0.0.1:8000/filrouge/faire/envoie";
-  url3 = "http://127.0.0.1:8000/filrouge/faire/retrait/{id}";
-  url4 = "http://127.0.0.1:8000/filrouge/fairedepot";
+  ajoutpartenaireseul = "http://127.0.0.1:8000/filrouge/partenaire/ajouter";
+  urlenvoitransaction = "http://127.0.0.1:8000/filrouge/faire/envoie";
+  urlretraitransaction = "http://127.0.0.1:8000/filrouge/faire/retrait/{id}";
+  urldepot = "http://127.0.0.1:8000/filrouge/fairedepot";
+  urlprofil = "http://127.0.0.1:8000/filrouge/ajoutprofil";
   private header ={headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))}
   
 
@@ -26,22 +27,27 @@ export class AjouterService {
 
   creerPartenaire(partenaire: any): Observable<any>{
     console.log(this.header);
-    return this.http.post<any>(`${this.url1}`, partenaire, this.header)
+    return this.http.post<any>(`${this.ajoutpartenaireseul}`, partenaire, this.header)
   }
 
   ajouterTransaction(transaction: any): Observable<any>{
     console.log(this.header);
-    return this.http.post<any>(`${this.url2}`, transaction, this.header)
+    return this.http.post<any>(`${this.urlenvoitransaction}`, transaction, this.header)
   }
 
   creerDepot(depot: any): Observable<any>{
     console.log(this.header);
-    return this.http.post<any>(`${this.url4}`, depot, this.header)
+    return this.http.post<any>(`${this.urldepot}`, depot, this.header)
   }
 
   creerCompte(compte: any): Observable<any>{
     console.log(this.header);
     return this.http.post<any>(`${this.urlcompte}`,compte, this.header)
+  }
+
+  creerProfil(profil: any): Observable<any>{
+    console.log(this.header);
+    return this.http.post<any>(`${this.urlprofil}`,profil, this.header)
   }
 
 }

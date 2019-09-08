@@ -24,13 +24,13 @@
       <div id="sidebar" class="sidebar py-3" *ngIf="isAuthenticated()">
         <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MENU</div>
         <ul class="sidebar-menu list-unstyled">
-          <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari() || isPartener() || isAdminPartener() "><a routerLink="ajouter/admin/partenaire" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-paperwork-1 mr-3 text-gray"></i><span>AJOUTER</span></a>
+          <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari() || isPartener() || isAdminPartener() "><a routerLink="ajouter/utilisateur" data-toggle="collapse" data-target="#pages" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-paperwork-1 mr-3 text-gray"></i><span>AJOUTER</span></a>
             <div id="pages" class="collapse">
               <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Partenaire</a></li>
-                <li *ngIf="isPartener() || isAdminPartener() " class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Utilisateur</a></li>
+                <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="ajouter/utilisateur" class="sidebar-link text-muted pl-lg-5">Ajouter Un Partenaire</a></li>
+                <li *ngIf="isPartener() || isAdminPartener() " class="sidebar-list-item"><a routerLink="ajouter/utilisateur" class="sidebar-link text-muted pl-lg-5">Ajouter Un Utilisateur</a></li>
                 <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="ajouter/compte" class="sidebar-link text-muted pl-lg-5">Ajouter Un Compte</a></li>
-                <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="ajouter/admin/partenaire" class="sidebar-link text-muted pl-lg-5">Ajouter Un Profil</a></li>
+                <li *ngIf="isSuperAdmin() || isAdminWari() " class="sidebar-list-item"><a routerLink="profil" class="sidebar-link text-muted pl-lg-5">Ajouter Un Profil</a></li>
               </ul>
             </div>
           </li>

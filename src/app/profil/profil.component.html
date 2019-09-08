@@ -1,3 +1,27 @@
-<p>
-  profil works!
-</p>
+<div class="col-lg-12 mb-5">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">Ajouter Un Profil</h3>
+        </div>
+        <div class="card-body">
+            <form class="form-horizontal" #f="ngForm">
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">Profil</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="libelle" [(ngModel)]="profils.libelle" #libelle="ngModel" [ngClass]="{ 'is-invalid': f.submitted && libelle.invalid }">
+                    </div>
+                    <div *ngIf="f.submitted && libelle.invalid" class="invalid-feedback">
+                        
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="form-group row">
+                    <div class="col-md-9 ml-auto">
+                        <button type="submit" class="btn btn-secondary">Annuler</button>
+                        <button type="button" (click)="ajouterProfil(f)" class="btn btn-primary" value="Ajouter">Ajouter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

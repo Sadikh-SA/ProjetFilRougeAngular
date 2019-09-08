@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AjouterService } from '../ajouter.service';
 import { Depot } from '../Depot';
+import { ListerService } from '../lister.service';
 
 @Component({
   selector: 'app-depot',
@@ -9,7 +10,7 @@ import { Depot } from '../Depot';
 })
 export class DepotComponent implements OnInit {
 
-  constructor( private ajouterService: AjouterService) { }
+  constructor( private ajouterService: AjouterService, private listerService: ListerService) { }
 
   depot:  Depot[];
   depots:  Depot  = { 
@@ -19,9 +20,14 @@ export class DepotComponent implements OnInit {
     caissier: null,
     dateDepot: null
   }
+  private depôt;
 
 
   ngOnInit() {
+    this.listerService.listerDepot().subscribe((depot: any)=> {
+      this.depôt = depot;
+      console.log(this.depôt)
+    })
   }
 
 

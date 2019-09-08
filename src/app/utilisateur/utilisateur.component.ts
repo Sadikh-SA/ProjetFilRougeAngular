@@ -137,11 +137,11 @@ export class UtilisateurComponent implements OnInit {
     this.authService.registerUser(this.registerUserData)
     .subscribe(
       res =>{
-        console.log(this.registerUserData);
+        console.log(this.registerUserData)
         console.log(res)
       },
       err => { 
-        console.log(err),
+        console.log(err)
         console.log(this.registerUserData)
       }
     )

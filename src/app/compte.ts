@@ -7,5 +7,5 @@ export class Compte {
     nomBeneficiaire: string;
     solde: number;
     dateCreation: Date;
-    partenaire: any;
+    partenaire: object ;
 }

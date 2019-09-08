@@ -4,6 +4,8 @@ import { AuthentificationService } from '../authentification.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   formulaire: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private authService: AuthentificationService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthentificationService, private router: Router , private toster: ToastrService) { }
 
   //private token = localStorage.getItem(TOKEN_NAME)
   private helper = new JwtHelperService();
@@ -57,10 +59,13 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token",res.token);
         localStorage.setItem("roles", this.roles[0]);
         console.log(localStorage.getItem("token"))  
+
         this.router.navigateByUrl("/")
+       // this.toster.success(this.username)
+        //this.toster.success("Sadikh")
       },
       err => {
-        alert("Login ou Mot de Passe Incoorect")
+        this.toster.error("Login ou Mot de Passe Incorrect")
         console.log(err)
       } 
     );
