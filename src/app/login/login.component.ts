@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 
 
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.authService.logOut();
   }
   get f() { return this.formulaire.controls; }
   onSubmit() {
@@ -65,7 +67,11 @@ export class LoginComponent implements OnInit {
         //this.toster.success("Sadikh")
       },
       err => {
-        this.toster.error("Login ou Mot de Passe Incorrect")
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Login ou Mot de Passe Incorrecte!'
+        })
         console.log(err)
       } 
     );

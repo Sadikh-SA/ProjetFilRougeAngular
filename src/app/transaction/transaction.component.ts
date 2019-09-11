@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListerService } from '../lister.service';
 import { AjouterService } from '../ajouter.service';
 import { Transaction } from '../Transaction';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-transaction',
@@ -10,8 +11,8 @@ import { Transaction } from '../Transaction';
 })
 export class TransactionComponent implements OnInit {
 
-  transaction:  Transaction[];
-  trans:  Transaction  = { 
+  transaction: Transaction[];
+  trans: Transaction = {
     id: null,
     nomEnvoyeur: null,
     prenomEnvoyeur: null,
@@ -38,36 +39,63 @@ export class TransactionComponent implements OnInit {
     utilisateur: null,
     userRetrait: null
   }
+  //CompteData: {}
+  private Compte;
 
-  constructor( private listerService: ListerService, private ajouterService: AjouterService) { }
+  constructor(private listerService: ListerService, private ajouterService: AjouterService) { }
 
   ngOnInit() {
-    this.listerService.listerTransaction().subscribe((transaction: any)=>{
-      this.transaction = transaction;
-      console.log(this.transaction)
-    })
+    // this.listerService.listerTransaction().subscribe((transaction: any) => {
+    //   this.transaction = transaction;
+    //   console.log(this.transaction)
+    // })
   }
 
-  ajouterTrans(data){
+  ajouterTrans(data) {
 
-      // if(this.selectedPolicy && this.selectedPolicy.id){
-      //   form.value.id = this.selectedPolicy.id;
-      //   this.ajouterService.updatePolicy(form.value).subscribe((policy: Policy)=>{
-      //     console.log("Policy updated" , policy);
-      //   });
-      // }
+    // if(this.selectedPolicy && this.selectedPolicy.id){
+    //   form.value.id = this.selectedPolicy.id;
+    //   this.ajouterService.updatePolicy(form.value).subscribe((policy: Policy)=>{
+    //     console.log("Policy updated" , policy);
+    //   });
+    // }
 
-      this.ajouterService.ajouterTransaction(data.value).subscribe((res)=>{
-        alert(res.message)
-        console.log(res);
-      },
+    this.ajouterService.ajouterTransaction(data.value).subscribe((res) => {
+      //alert(res.message)
+      console.log(res);
+      Swal.fire(
+        'Transaction Réussie!',
+        'success'
+      )
+      this.ngOnInit()
+    },
       err => {
-        alert(err.error.error.get('message'))
+        //alert(err.error.error.get('message'))
         console.log(err)
         console.log(err.error.error);
-        
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Erreur Inconnue!'
+        })
+
       }
-      );
-    }
+    );
+  }
+
+  findTransaction(CompteData: any) {
+    this.ajouterService.findTransaction(CompteData)
+      .subscribe(
+
+        res => {
+          console.log(res);
+      
+       CompteData = res
+        },
+        err => {
+          console.log(err);
+        }
+      )
+  }
 
 }

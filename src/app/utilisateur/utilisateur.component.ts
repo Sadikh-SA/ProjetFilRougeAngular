@@ -4,7 +4,8 @@ import { Utilisateur } from '../Utilisateur';
 import { AjouterService } from '../ajouter.service';
 import { PartenaireUser } from '../partenaireuser';
 import { AuthentificationService } from '../authentification.service';
-
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-utilisateur',
@@ -72,7 +73,7 @@ export class UtilisateurComponent implements OnInit {
       dateCreationcompte: null
   };
 
-  constructor( private listerService: ListerService, private ajouterService: AjouterService, private authService: AuthentificationService) { }
+  constructor( private listerService: ListerService, private ajouterService: AjouterService, private authService: AuthentificationService, private toster: ToastrService) { }
 
   
 
@@ -98,8 +99,17 @@ export class UtilisateurComponent implements OnInit {
       this.ajouterService.createAdminPartenaire(data.value).subscribe(
         (res)=>{
           console.log(res);
+          this.toster.success("Le nouveau Utilisateur est enregistrer avec succès")
+          Swal.fire(
+            'AJOUT AVEC SUCCES!',
+            'success'
+          )
+          this.ngOnInit()
+          
         },
-          err => console.log(err)
+          err => { console.log(err)
+          this.toster.error("Error")
+        }
       );
     //}
 
@@ -139,13 +149,47 @@ export class UtilisateurComponent implements OnInit {
       res =>{
         console.log(this.registerUserData)
         console.log(res)
+        Swal.fire(
+          'AJOUT AVEC SUCCES!',
+          'success'
+        )
+        this.ngOnInit()
       },
       err => { 
         console.log(err)
         console.log(this.registerUserData)
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Erreur !'
+        })
       }
     )
   }
+
+  listerMasquer(){
+    return this.authService.isAdminWari();
+  }
+
+  bloquerUser(donnee){
+    console.log(donnee);
+    
+    this.ajouterService.blockUser(donnee).subscribe(
+      res => {
+        console.log(res)
+        this.ngOnInit()
+      },
+      err => {
+        console.log(err)
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Erreur Inconnue!'
+        })
+      }
+    )
+  }
+
 
 
   isSuperAdmin(){
@@ -160,7 +204,7 @@ export class UtilisateurComponent implements OnInit {
     return this.authService.isPartener();
   }
 
-  isAdminWari(){
+  isAdminWari(role){
     return this.authService.isAdminWari();
   }
 

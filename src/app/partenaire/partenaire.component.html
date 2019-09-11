@@ -55,6 +55,7 @@
                                     <th>DOMAINE D'ACTIVITÉ</th>
                                     <th>STATUS</th>
                                     <th>DATE DE CREATION</th>
+                                    <th>BLOQUER</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,6 +65,7 @@
                                     <td>{{partenaire.domaineActivite}}</td>
                                     <td>{{partenaire.statut}}</td>
                                     <td>{{partenaire.dateCreation}}</td>
+                                    <td><button (click)="bloquerParte(partenaire)">ACTION</button></td>
                                 </tr>
                             </tbody>
                         </table>

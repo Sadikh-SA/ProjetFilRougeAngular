@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Partenaire } from '../Partenaire';
 import { ListerService } from '../lister.service';
 import { AjouterService } from '../ajouter.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-partenaire',
@@ -39,11 +40,46 @@ export class PartenaireComponent implements OnInit {
 
       this.ajouterService.creerPartenaire(data.value).subscribe((res)=>{
         console.log(res);
-        alert(res.message);
-        window.location.reload();
-      });
+        //alert(res.message);
+        Swal.fire(
+          'PARTENAIRE AJOUTÉ!',
+          'success'
+        )
+        this.ngOnInit()
+      },
+      err => {
+        console.log(err);
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Tous les champs sont obligatoire!'
+        })
+        
+      }
+      
+      );
     //}
 
   }
+
+
+  bloquerParte(donnee){
+    console.log(donnee);
+    this.ajouterService.bloquerPart(donnee).subscribe(
+      res => {
+        console.log(res)
+        this.ngOnInit()
+      },
+      err => {
+        console.log(err)
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Erreur Inconnue!'
+        })
+      }
+    )
+  }
+
 
 }

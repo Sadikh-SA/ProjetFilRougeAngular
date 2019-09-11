@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 
 // export interface Compte {
@@ -24,7 +25,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CompteComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'numeroCompte', 'codeBank', 'nomBeneficiaire', 'solde', 'dateCreation','partenaire'];
+  displayedColumns: string[] = ['id', 'numeroCompte', 'nomBeneficiaire', 'solde', 'dateCreation','partenaire'];
   dataSource: MatTableDataSource<Compte>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -82,12 +83,22 @@ export class CompteComponent implements OnInit {
 
   ajouterCompte(data){
     this.ajouterService.creerCompte(data.value).subscribe((res)=>{
-      alert(res.message)
+      //alert(res.message)
       this.toster.success("Le nouveau profil est enregistrer avec succès")
+      Swal.fire(
+        'AJOUT AVEC SUCCES!',
+        'success'
+      )
       console.log(res);
+      this.ngOnInit()
     },
     err => {
-      console.log(err.error.error);
+      console.log(err.error.error)
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Erreur Inconnue!'
+      })
     }
     );
   }

@@ -174,20 +174,22 @@
                                 <tr>
                                     <th>NOM</th>
                                     <th>PRENOM</th>
-                                    <th>ADRESSE</th>
+                                    <th>ROLE</th>
                                     <th>EMAIL</th>
                                     <th>TELEPHONE</th>
-                                    <th>ROLE</th>
+                                    <th>STATUT</th>
+                                    <th>BLOQUER</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let utilisateur of user">
+                                <tr *ngFor="let utilisateur of user" >
                                     <td>{{utilisateur.nom}}</td>
                                     <td>{{utilisateur.prenom}}</td>
-                                    <td>{{utilisateur.adresse}}</td>
+                                    <td>{{utilisateur.roles[0]}}</td>
                                     <td>{{utilisateur.email}}</td>
                                     <td>{{utilisateur.tel}}</td>
-                                    <td>{{utilisateur.roles[0]}}</td>
+                                    <td>{{utilisateur.statut}}</td>
+                                    <td><button  (click)="bloquerUser(utilisateur)" class="btn btn-success">Bloquer</button></td>
                                 </tr>
                             </tbody>
                         </table>

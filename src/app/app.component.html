@@ -39,10 +39,10 @@
               <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
                 <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari()" ><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Partenaire</a></li>
                 <li class="sidebar-list-item" *ngIf="isPartener() || isAdminPartener() "><a routerLink="lister/user" class="sidebar-link text-muted pl-lg-5">Lister Utilisateur</a></li>
-                <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari() || isPartener() || isAdminPartener() "><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Compte</a></li>
-                <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari()"><a routerLink="lister/partenaire" class="sidebar-link text-muted pl-lg-5">Lister Profil</a></li>
+                <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari() || isPartener() || isAdminPartener() "><a routerLink="ajouter/compte" class="sidebar-link text-muted pl-lg-5">Lister Compte</a></li>
+                <li class="sidebar-list-item" *ngIf="isSuperAdmin() || isAdminWari()"><a routerLink="profil" class="sidebar-link text-muted pl-lg-5">Lister Profil</a></li>
                 <li class="sidebar-list-item" *ngIf="isPartener() || isAdminPartener() || isUser() "><a routerLink="lister/transaction" class="sidebar-link text-muted pl-lg-5">Lister Transaction</a></li>
-                <li class="sidebar-list-item" *ngIf="isCaissier()" ><a routerLink="lister/depot" class="sidebar-link text-muted pl-lg-5">Lister Dépot-Compte</a></li>
+                <li class="sidebar-list-item" *ngIf="isCaissier()" ><a routerLink="depot" class="sidebar-link text-muted pl-lg-5">Lister Dépot-Compte</a></li>
               </ul>
             </div>
           </li>

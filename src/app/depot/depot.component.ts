@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AjouterService } from '../ajouter.service';
 import { Depot } from '../Depot';
 import { ListerService } from '../lister.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-depot',
@@ -33,11 +34,22 @@ export class DepotComponent implements OnInit {
 
   ajouterDepot(data){
     this.ajouterService.creerDepot(data.value).subscribe((res)=>{
-      alert(res.message)
+      //alert(res.message)
+      Swal.fire(
+        'AJOUT AVEC SUCCES!',
+        'success'
+      )
       console.log(res);
+      this.ngOnInit()
     },
     err => {
+
       console.log(err.error.error);
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Erreur Inconnue!'
+      })
       
     }
     );
