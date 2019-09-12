@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PartenaireUser } from './partenaireuser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AjouterService {
+  
   
 
   url = "http://127.0.0.1:8000/filrouge/ajouter/partenaire";
@@ -17,7 +17,7 @@ export class AjouterService {
   urlTransaction = "http://127.0.0.1:8000/filrouge/select/transaction";
   urldepot = "http://127.0.0.1:8000/filrouge/fairedepot";
   urlprofil = "http://127.0.0.1:8000/filrouge/ajoutprofil";
-  urlbloquer = "http://127.0.0.1/filrouge/bloquer";
+  urlbloquer = "http://127.0.0.1/filrouge/bloquer/users";
   urlbloquerparte = "http://127.0.0.1/filrouge/bloquer/partenaire";
   private header ={headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))}
   
@@ -40,7 +40,7 @@ export class AjouterService {
   }
 
   blockUser(donnee): Observable<any> {
-    console.log(this.header);
+    //console.log(this.header);
     return this.http.post<any>(`${this.urlbloquer}`,donnee, this.header)
   }
 
@@ -66,6 +66,10 @@ export class AjouterService {
 
   bloquerPart(donnee: any) {
     return this.http.post<any>(`${this.urlbloquerparte}`,donnee, this.header)
+  }
+
+  retirerTransaction(value: any) {
+    return this.http.post<any>(`${this.urlretraitransaction}`,value, this.header)
   }
 
 }

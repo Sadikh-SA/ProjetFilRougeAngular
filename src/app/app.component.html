@@ -46,13 +46,7 @@
               </ul>
             </div>
           </li>
-          <li class="sidebar-list-item" *ngIf=" isUser() || isPartener() || isAdminPartener() " ><a href="#" data-toggle="collapse" data-target="#pages2" aria-expanded="false" aria-controls="pages2" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>TRANSACTION</span></a>
-            <div id="pages2" class="collapse">
-              <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
-                <li class="sidebar-list-item"><a routerLink="ajouter/transaction" class="sidebar-link text-muted pl-lg-5">DEPOT</a></li>
-                <li class="sidebar-list-item"><a routerLink="retirer/transaction" class="sidebar-link text-muted pl-lg-5">RETRAIT</a></li>
-              </ul>
-            </div>
+          <li class="sidebar-list-item" *ngIf=" isUser() || isPartener() || isAdminPartener() " ><a routerLink="ajouter/transaction" aria-expanded="false" class="sidebar-link text-muted"><i class="o-survey-1 mr-3 text-gray"></i><span>TRANSACTION</span></a>
           </li>
           <li class="sidebar-list-item" *ngIf=" isCaissier() " ><a routerLink="depot" class="sidebar-link text-muted"><i class="o-sales-up-1 mr-3 text-gray"></i><span>DÉPÔT</span></a></li>
         </ul>

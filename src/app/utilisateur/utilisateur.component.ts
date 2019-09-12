@@ -176,7 +176,7 @@ export class UtilisateurComponent implements OnInit {
     
     this.ajouterService.blockUser(donnee).subscribe(
       res => {
-        console.log(res)
+        //console.log(res)
         this.ngOnInit()
       },
       err => {

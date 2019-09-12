@@ -62,9 +62,15 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("roles", this.roles[0]);
         console.log(localStorage.getItem("token"))  
 
-        this.router.navigateByUrl("/")
-       // this.toster.success(this.username)
-        //this.toster.success("Sadikh")
+        if (this.authService.isAdminWari() || this.authService.isSuperAdmin() ) {
+            this.router.navigateByUrl("ajouter/utilisateur")
+        } else if(this.authService.isPartener() || this.authService.isAdminPartener()) {
+          this.router.navigateByUrl("ajouter/partenaire")
+        } else if (this.authService.isCaissier()) {
+          this.router.navigateByUrl("depot")
+        } else if(this.authService.isUser()) {
+          this.router.navigateByUrl("ajouter/transaction")
+        }
       },
       err => {
         Swal.fire({

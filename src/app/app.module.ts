@@ -19,7 +19,6 @@ import { CompteComponent } from './compte/compte.component';
 import { ProfilComponent } from './profil/profil.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { from } from 'rxjs';
 
 @NgModule({
   declarations: [

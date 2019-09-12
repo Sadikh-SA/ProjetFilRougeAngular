@@ -39,7 +39,7 @@ export class TransactionComponent implements OnInit {
     utilisateur: null,
     userRetrait: null
   }
-  //CompteData: {}
+  CompteData: {}
   private Compte;
 
   constructor(private listerService: ListerService, private ajouterService: AjouterService) { }
@@ -83,16 +83,59 @@ export class TransactionComponent implements OnInit {
     );
   }
 
-  findTransaction(CompteData: any) {
-    this.ajouterService.findTransaction(CompteData)
-      .subscribe(
+  retrait(){
+    document.getElementById("retrait").style.display="block";
+    document.getElementById("envoie").style.display="none";
+    document.getElementById("envoies").style.display="block";
+    document.getElementById("retraits").style.display="none";
+  }
+  envoie(){
+    document.getElementById("envoie").style.display="block";
+    document.getElementById("retrait").style.display="none";
+    document.getElementById("retraits").style.display="block";
+    document.getElementById("envoies").style.display="none";
+  }
+  
 
+
+
+    retirer(data) {
+      this.ajouterService.retirerTransaction(data.value).subscribe((res) => {
+        //alert(res.message)
+        console.log(res);
+        Swal.fire(
+          'Retrait Réussie!',
+          'success'
+        )
+        this.ngOnInit()
+      },
+        err => {
+          //alert(err.error.error.get('message'))
+          console.log(data)
+          console.log(err)
+          console.log(err.error.error);
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Erreur Inconnue!'
+          })
+  
+        }
+      );
+    }
+
+
+  findTransaction() {
+    this.ajouterService.findTransaction(this.trans)
+      .subscribe(
         res => {
           console.log(res);
-      
-       CompteData = res
+          this.trans = res
+          this.CompteData = res
         },
         err => {
+          console.log(this.trans);
+          
           console.log(err);
         }
       )
