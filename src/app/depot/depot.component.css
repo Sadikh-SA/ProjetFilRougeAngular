@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    background: white;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    color: black;
+}
+
+.mat-paginator{
+    background: white;
+    color: black;
+}
+.pageSizeOptions{
+    color: black;
+}
+
+#pageSizeOptions{
+    color: black;
+}
+
+td,
+th {
+    width: 25%;
+    color: black;
+}
+

@@ -1,32 +1,116 @@
+<form class="form-horizontal row" #fx="ngForm">
+    <div class="form-group row">
+        <label class="col-md-3 form-control-label">COMPTE DEPOT</label>
+        <div class="col-md-9">
+            <input type="number" class="form-control" [(ngModel)]="depo.numeroCompte" name="numeroCompte" (keyup)="findCompte($event)">
+        </div>
+    </div>
+</form>
 
-<div class="col-lg-12 mb-5">
-  <div class="card">
-      <div class="card-header">
-          <h3 class="h6 text-uppercase mb-0">FAIRE UN DEPOT</h3>
-      </div>
-      <div class="card-body">
-          <form class="form-horizontal" #f="ngForm">
-              <div class="form-group row">
-                  <label class="col-md-3 form-control-label">Compte</label>
-                  <div class="col-md-9">
-                      <input type="number" class="form-control" name="compte" [(ngModel)]="depots.compte">
-                  </div>
-              </div>
-              <div class="line"></div>
-              <div class="form-group row">
-                  <label class="col-md-3 form-control-label">Montant à Déposer</label>
-                  <div class="col-md-9">
-                      <input type="number" name="montantDepot" [(ngModel)]="depots.montantDepot" class="form-control">
-                  </div>
-              </div>
-              <div class="line"></div>
-              <div class="form-group row">
-                  <div class="col-md-9 ml-auto">
-                      <button type="submit" class="btn btn-secondary">Annuler</button>
-                      <button type="button" (click)="ajouterDepot(f)" class="btn btn-primary" value="Ajouter">Ajouter</button>
-                  </div>
-              </div>
-          </form>
-      </div>
-  </div>
+
+<div class="col-lg-12 mb-5" *ngFor="let el of depo">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="h6 text-uppercase mb-0">FAIRE UN DEPOT</h3>
+        </div>
+
+        <table mdbtable>
+            <thead class="black white-text">
+                <tr>
+                    <th scope="col">
+                        ID Compte
+                    </th>
+                    <th scope="col">
+                        Numero Compte
+                    </th>
+                    <th scope="col">
+                        Date Création
+                    </th>
+                    <th scope="col">
+                        Ninea Partenaire
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr mdbtablecol>
+                    <th scope="row">{{el.id}}</th>
+                    <td>{{el.numeroCompte}}</td>
+                    <td>{{el.dateCreation}}</td>
+                    <td>{{el.Partenaire.ninea}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+
+<div class="card-body" *ngFor="let el of depo">
+    <form class="form-horizontal" #f="ngForm">
+        <div class="form-group row">
+            <label class="col-md-3 form-control-label">Compte</label>
+            <div class="col-md-9">
+                <input type="number" class="form-control" name="compte" [(ngModel)]="depots.compte">
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+            <label class="col-md-3 form-control-label">Montant à Déposer</label>
+            <div class="col-md-9">
+                <input type="number" name="montantDepot" [(ngModel)]="depots.montantDepot" class="form-control">
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="form-group row">
+            <div class="col-md-9 ml-auto">
+                <button type="submit" class="btn btn-secondary">Annuler</button>
+                <button type="button" (click)="ajouterDepot(f)" class="btn btn-primary" value="Ajouter">Ajouter</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Rechercher dans le tableau" style="color: black; text-underline-position: auto;">
+    </mat-form-field>
+    
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+    
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+    
+            <!-- Progress Column -->
+            <ng-container matColumnDef="numeroCompte">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero Compte </th>
+                <td mat-cell *matCellDef="let row"> {{row.compte.numeroCompte}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="nomBeneficiaire">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> nom Bénéficiaire </th>
+                <td mat-cell *matCellDef="let row"> {{row.compte.nomBeneficiaire}} </td>
+            </ng-container>
+    
+            <!-- Color Column -->
+            <ng-container matColumnDef="dateDepot">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Création </th>
+                <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.dateDepot}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="caissier">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Caissier </th>
+                <td mat-cell *matCellDef="let row"> {{row.caissier.username}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>

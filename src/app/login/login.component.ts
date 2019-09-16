@@ -62,10 +62,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("roles", this.roles[0]);
         console.log(localStorage.getItem("token"))  
 
-        if (this.authService.isAdminWari() || this.authService.isSuperAdmin() ) {
+        if (this.authService.isAdminWari() || this.authService.isSuperAdmin() || this.authService.isPartener() || this.authService.isAdminPartener() ) {
             this.router.navigateByUrl("ajouter/utilisateur")
-        } else if(this.authService.isPartener() || this.authService.isAdminPartener()) {
-          this.router.navigateByUrl("ajouter/partenaire")
         } else if (this.authService.isCaissier()) {
           this.router.navigateByUrl("depot")
         } else if(this.authService.isUser()) {
@@ -73,12 +71,13 @@ export class LoginComponent implements OnInit {
         }
       },
       err => {
+        var message = err.error.message135;
         Swal.fire({
           type: 'error',
           title: 'Oops...',
-          text: 'Login ou Mot de Passe Incorrecte!'
+          text: ''+message+''
         })
-        console.log(err)
+        console.log(err.error.message135)
       } 
     );
     console.log(this.formulaire.value)

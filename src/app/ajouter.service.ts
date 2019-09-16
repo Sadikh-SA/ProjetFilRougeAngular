@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class AjouterService {
   
   
+  
 
   url = "http://127.0.0.1:8000/filrouge/ajouter/partenaire";
   urlcompte = "http://127.0.0.1:8000/filrouge/compte/ajouter";
@@ -17,8 +18,10 @@ export class AjouterService {
   urlTransaction = "http://127.0.0.1:8000/filrouge/select/transaction";
   urldepot = "http://127.0.0.1:8000/filrouge/fairedepot";
   urlprofil = "http://127.0.0.1:8000/filrouge/ajoutprofil";
-  urlbloquer = "http://127.0.0.1/filrouge/bloquer/users";
-  urlbloquerparte = "http://127.0.0.1/filrouge/bloquer/partenaire";
+  urlattcomp = "http://127.0.0.1:8000/filrouge/attribuer/compte";
+  urlbloquer = "http://127.0.0.1:8000/filrouge/bloquer/users";
+  urlcomp = "http://127.0.0.1:8000/filrouge/select/compte";
+  urlbloquerparte = "http://127.0.0.1:8000/filrouge/bloquer/partenaire";
   private header ={headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))}
   
 
@@ -41,7 +44,8 @@ export class AjouterService {
 
   blockUser(donnee): Observable<any> {
     //console.log(this.header);
-    return this.http.post<any>(`${this.urlbloquer}`,donnee, this.header)
+    const data={username:donnee};
+    return this.http.post<any>(`${this.urlbloquer}`,data, this.header)
   }
 
   creerDepot(depot: any): Observable<any>{
@@ -63,13 +67,23 @@ export class AjouterService {
     //console.log(this.header);
     return this.http.post<any>(`${this.urlTransaction}`,transaction, this.header)
   }
+  findCompte(compte: any): Observable<any>{
+    //console.log(this.header);
+    return this.http.post<any>(`${this.urlcomp}`,compte, this.header)
+  }
 
   bloquerPart(donnee: any) {
-    return this.http.post<any>(`${this.urlbloquerparte}`,donnee, this.header)
+    const data={ninea:donnee};
+    return this.http.post<any>(`${this.urlbloquerparte}`,data, this.header)
   }
 
   retirerTransaction(value: any) {
     return this.http.post<any>(`${this.urlretraitransaction}`,value, this.header)
+  }
+
+  attibuercompte(donnee: any) {
+    const data={compte:donnee, username: donnee};
+    return this.http.post<any>(`${this.urlattcomp}`,data, this.header)
   }
 
 }

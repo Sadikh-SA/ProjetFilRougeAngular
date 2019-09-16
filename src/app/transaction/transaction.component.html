@@ -8,9 +8,6 @@
             <div class="card-header">
                 <h3 class="h6 text-uppercase mb-0">FAIRE ENVOIE D'ARGENT</h3>
             </div>
-            <!--<div class="card-header">
-                              <h3 class="h6 text-uppercase mb-0">FAIRE RETRAIT D'ARGENT</h3>
-                            </div>-->
             <div class="card-body row">
                 <div class="col-md-6">
                     <div class="form-group row">
@@ -109,55 +106,54 @@
         <input type="number" class="form-control" [(ngModel)]="trans.numeroTransaction" name="numeroTransaction" (keyup)="findTransaction($event)">
     </div>
   </div>
-  <div class="col-lg-12 mb-5" *ngFor="let trans of trans">
+</form>
+<form class="form-horizontal" id="retrait" *ngFor="let trans of trans" #fs="ngForm">
+  <div class="col-lg-12 mb-5" >
       <div class="card">
           <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">FAIRE ENVOIE D'ARGENT</h3>
+              <h3 class="h6 text-uppercase mb-0">FAIRE RETRAIT D'ARGENT</h3>
           </div>
-          <!--<div class="card-header">
-                            <h3 class="h6 text-uppercase mb-0">FAIRE RETRAIT D'ARGENT</h3>
-                          </div>-->
           <div class="card-body row">
               <div class="col-md-6">
                   <div class="form-group row">
                       <label class="col-md-3 form-control-label">NOM ENVOYEUR</label>
                       <div class="col-md-9">
-                          <input type="text" class="form-control" name="nomEnvoyeur" [(ngModel)]="trans.nomEnvoyeur" disabled="true">
+                          <input type="text" class="form-control" name="nomEnvoyeur" [(ngModel)]="trans.nomEnvoyeur" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                   <div class="form-group row">
                       <label class="col-md-3 form-control-label">PRÉNOM ENVOYEUR</label>
                       <div class="col-md-9">
-                          <input type="text" name="prenomEnvoyeur" [(ngModel)]="trans.prenomEnvoyeur" class="form-control" disabled="true">
+                          <input type="text" name="prenomEnvoyeur" [(ngModel)]="trans.prenomEnvoyeur" class="form-control" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                   <div class="form-group row">
                       <label class="col-md-3 form-control-label">ADRESSE ENVOYEUR</label>
                       <div class="col-md-9">
-                          <input type="text" placeholder="" name="adresseEnvoyeur" [(ngModel)]="trans.adresseEnvoyeur" class="form-control" disabled="true">
+                          <input type="text" placeholder="" name="adresseEnvoyeur" [(ngModel)]="trans.adresseEnvoyeur" class="form-control" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                   <div class="form-group row ">
                       <label class="col-sm-3 form-control-label">TÉLÉPHONE ENVOYEUR</label>
                       <div class="col-sm-9">
-                          <input type="text" name="telEnvoyeur" [(ngModel)]="trans.telEnvoyeur" class="form-control" disabled="true">
+                          <input type="text" name="telEnvoyeur" [(ngModel)]="trans.telEnvoyeur" class="form-control" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                   <div class="form-group row">
                       <label class="col-sm-3 form-control-label">CNI ENVOYEUR</label>
                       <div class="col-sm-9">
-                          <input type="text" name="CNIEnvoyeur" [(ngModel)]="trans.CNIEnvoyeur" class="form-control" disabled="true">
+                          <input type="text" name="CNIEnvoyeur" [(ngModel)]="trans.CNIEnvoyeur" class="form-control" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                       <div class="form-group row">
                           <label class="col-sm-3 form-control-label">MONTANT ENVOYER</label>
                           <div class="col-sm-9">
-                              <input type="number" name="numeroTransaction" [(ngModel)]="trans.numeroTransaction" class="form-control" disabled="true">
+                              <input type="number" name="numeroTransaction" [(ngModel)]="trans.numeroTransaction" class="form-control" readonly="true" >
                           </div>
                       </div>
               </div>
@@ -165,28 +161,28 @@
                   <div class="form-group row ">
                       <label class="col-sm-3 form-control-label">NOM BÉNFICAIRE</label>
                       <div class="col-sm-9">
-                          <input type="text" name="nomBeneficiaire" [(ngModel)]="trans.nomBeneficiaire" class="form-control" disabled="true">
+                          <input type="text" name="nomBeneficiaire" [(ngModel)]="trans.nomBeneficiaire" class="form-control" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                   <div class="form-group row">
                       <label class="col-md-3 form-control-label">PRÉNOM BÉNFICAIRE</label>
                       <div class="col-md-9">
-                          <input type="text" name="prenomBeneficiaire" [(ngModel)]="trans.prenomBeneficiaire" placeholder="" class="form-control" disabled="true">
+                          <input type="text" name="prenomBeneficiaire" [(ngModel)]="trans.prenomBeneficiaire" placeholder="" class="form-control" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                   <div class="form-group row">
                       <label class="col-md-3 form-control-label">ADRESSE BÉNFICAIRE</label>
                       <div class="col-md-9">
-                          <input type="text" name="adresseBeneficiaire" [(ngModel)]="trans.adresseBeneficiaire" placeholder="" class="form-control" disabled="true">
+                          <input type="text" name="adresseBeneficiaire" [(ngModel)]="trans.adresseBeneficiaire" placeholder="" class="form-control" readonly="true" >
                       </div>
                   </div>
                   <div class="line"></div>
                   <div class="form-group row">
                       <label class="col-sm-3 form-control-label">TÉLÉPHONE BÉNFICAIRE</label>
                       <div class="col-sm-9">
-                          <input type="text" name="telBeneficiaire" [(ngModel)]="trans.telBeneficiaire" class="form-control" disabled="true">
+                          <input type="text" name="telBeneficiaire" [(ngModel)]="trans.telBeneficiaire" class="form-control" readonly="true" >
                       </div>
                   </div>
 
@@ -195,10 +191,11 @@
                       <div class="form-group row">
                           <label class="col-sm-3 form-control-label">MONTANT ENVOYER</label>
                           <div class="col-sm-9">
-                              <input type="number" name="montantEnvoyer" [(ngModel)]="trans.montantEnvoyer" class="form-control" disabled="true">
+                              <input type="number" name="montantEnvoyer" [(ngModel)]="trans.montantEnvoyer" class="form-control" readonly="true">
                           </div>
                       </div>
                   </div>
+                  
                   <div class="col-md-12">
                       <div class="line"></div>
                       <div class="form-group row">
@@ -208,13 +205,22 @@
                           </div>
                       </div>
                   </div>
+                  <div class="line"></div>
+                  <div class="form-group row">
+                    <label class="col-md-3 form-control-label">CODE TRANSACTION</label>
+                    <div class="col-md-9">
+                        <input type="number" name="numeroTransaction" [(ngModel)]="trans.numeroTransaction" class="form-control" readonly="true">
+                    </div>
+                  </div>
               </div>
+
+              
 
               <div class="line"></div>
               <div class="form-group row" style="width: 100%; margin: 0 auto;">
                   <div class="col-md-7 ml-auto">
                       <button type="submit" class="btn btn-secondary">Annuler</button>
-                      <button type="button" (click)="retirer(fx)" class="btn btn-primary" value="Envoyer">Envoyer</button>
+                      <button type="button" (click)="retirer(fs)" class="btn btn-primary" value="Envoyer">Envoyer</button>
                   </div>
               </div>
 
@@ -222,3 +228,56 @@
       </div>
   </div>
 </form>
+
+
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Rechercher dans le tableau" style="color: black; text-underline-position: auto;">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="numeroTransaction">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Code Transaction </th>
+            <td mat-cell *matCellDef="let row"> {{row.numeroTransaction}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="dateEnvoie">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'Envoie </th>
+            <td mat-cell *matCellDef="let row"> {{row.dateEnvoie | date}} </td>
+        </ng-container>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="utilisateur">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Envoyeur </th>
+            <td mat-cell *matCellDef="let row"> {{row.utilisateur.username}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut </th>
+            <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+        </ng-container>
+        <!-- Progress Column -->
+        <ng-container matColumnDef="dateRetrait">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Retrait </th>
+            <td mat-cell *matCellDef="let row"> {{row.dateRetrait | date}} </td>
+        </ng-container>
+
+         <!-- Progress Column -->
+         <ng-container matColumnDef="userRetrait">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> User Retrait </th>
+            <td mat-cell *matCellDef="let row">{{ row.userRetrait.username }}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

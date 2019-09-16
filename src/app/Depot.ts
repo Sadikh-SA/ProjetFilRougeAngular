@@ -2,8 +2,8 @@
 
 export class Depot {
     id: number;
-    compte: number;
+    compte: any;
     montantDepot: number;
-    dateDepot: Date;
-    caissier: object;
+    dateDepot: any;
+    caissier: any;
 }

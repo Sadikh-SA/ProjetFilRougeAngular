@@ -176,7 +176,7 @@ export class UtilisateurComponent implements OnInit {
     
     this.ajouterService.blockUser(donnee).subscribe(
       res => {
-        //console.log(res)
+        console.log(res)
         this.ngOnInit()
       },
       err => {
@@ -187,6 +187,17 @@ export class UtilisateurComponent implements OnInit {
           text: 'Erreur Inconnue!'
         })
       }
+    )
+  }
+
+  attribuercompte(donnee) {
+    console.log(donnee);
+    this.ajouterService.attibuercompte(donnee).subscribe(
+      res => {
+        console.log(res)
+        this.ngOnInit()
+      },
+      err => console.log(err)
     )
   }
 
@@ -204,7 +215,7 @@ export class UtilisateurComponent implements OnInit {
     return this.authService.isPartener();
   }
 
-  isAdminWari(role){
+  isAdminWari(){
     return this.authService.isAdminWari();
   }
 

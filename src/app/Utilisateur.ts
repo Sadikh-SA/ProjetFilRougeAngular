@@ -15,7 +15,7 @@ export  class  Utilisateur {
     imageName: string;
     updateAt: Date;
     partenaire: any;
-    compte: number;
+    compte: any;
     ninea: number;
     localisation: string;
     
